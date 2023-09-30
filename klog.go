@@ -58,13 +58,15 @@ func (v Verbose) Infof(format string, args ...interface{}) {
 
 func (v Verbose) InfoS(msg string, keysAndValues ...interface{}) {
 	if v {
-		level.Debug(logger).Log("func", "Verbose.InfoS", "msg", msg, keysAndValues)
+		level.Debug(logger).Log(
+			append([]interface{}{"func", "Verbose.InfoS", "msg", msg}, keysAndValues...)...)
 	}
 }
 
 func (v Verbose) InfoSDepth(_ int, msg string, keysAndValues ...interface{}) {
 	if v {
-		level.Debug(logger).Log("func", "Verbose.InfoSDepth", "msg", msg, keysAndValues)
+		level.Debug(logger).Log(
+			append([]interface{}{"func", "Verbose.InfoSDepth", "msg", msg}, keysAndValues...)...)
 	}
 }
 
@@ -85,11 +87,13 @@ func Infof(format string, args ...interface{}) {
 }
 
 func InfoS(msg string, keysAndValues ...interface{}) {
-	level.Debug(logger).Log("func", "InfoS", "msg", msg, keysAndValues)
+	level.Debug(logger).Log(
+		append([]interface{}{"func", "InfoS", "msg", msg}, keysAndValues...)...)
 }
 
 func InfoSDepth(_ int, msg string, keysAndValues ...interface{}) {
-	level.Debug(logger).Log("func", "InfoS", "msg", msg, keysAndValues)
+	level.Debug(logger).Log(
+		append([]interface{}{"func", "InfoS", "msg", msg}, keysAndValues...)...)
 }
 
 func Warning(args ...interface{}) {
@@ -125,7 +129,8 @@ func Errorf(format string, args ...interface{}) {
 }
 
 func ErrorS(err error, msg string, keysAndValues ...interface{}) {
-	level.Error(logger).Log("func", "ErrorS", "msg", msg, "err", err, keysAndValues)
+	level.Error(logger).Log(
+		append([]interface{}{"func", "ErrorS", "msg", msg, "err", err}, keysAndValues...)...)
 }
 
 func Fatal(args ...interface{}) {
